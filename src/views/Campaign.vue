@@ -2,7 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="col">
-        <p><h1>Campaign title</h1></p>
+        <div class="title-container">
+          <b-img src="https://lorempixel.com/1024/400/" fluid alt="Responsive image" />
+          <h1 class="title-text">Campaign title</h1>
+        </div>
+
         <p>here's a campaign body</p>
       </div>
       <div class="col-md-5 col-lg-4 my-lg-4 my-md-3">
@@ -20,3 +24,18 @@ export default {
   components: { SingleForm },
 };
 </script>
+
+<style lang="scss" scoped>
+.title-container {
+  position: relative;
+}
+.title-text {
+  position: absolute;
+  top: 50%;
+  left: 2rem;
+  color: white;
+  background-color: rgba(0,0,0,0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+</style>
