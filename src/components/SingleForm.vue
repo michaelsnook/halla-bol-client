@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-progress class="mb-3" :value="10321" :max="15000" show-progress animated></b-progress>
+    <b-progress class="mb-3" :value="progress.value" :max="progress.goal" show-value animated variant="danger"></b-progress>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="exampleInputGroup1"
                     label="Email address:"
@@ -38,15 +38,17 @@
           <b-form-checkbox value="that">Check that out</b-form-checkbox>
         </b-form-checkbox-group>
       </b-form-group>
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <b-button type="submit" variant="danger">Submit</b-button>
+      <b-button type="reset" variant="link" class="float-md-right">Skip</b-button>
     </b-form>
   </div>
 </template>
 
 <script>
+
 export default {
   name: 'SingleForm',
+  //components: '',
   data () {
     return {
       form: {
@@ -59,6 +61,10 @@ export default {
         { text: 'Select One', value: null },
         'Carrots', 'Beans', 'Tomatoes', 'Corn'
       ],
+      progress: {
+        value: 12341,
+        goal: 15000
+      },
       show: true
     }
   },
@@ -81,3 +87,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.progress {
+  height: 2rem;
+}
+</style>
