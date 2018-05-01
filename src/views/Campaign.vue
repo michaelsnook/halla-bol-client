@@ -30,7 +30,7 @@ export default {
   },
   created () {
     this.$http
-      .get('https://halla-bol-api.herokuapp.com/new-speakout')
+      .get('new-speakout')
       .then(function(response) {
         this.campaign = response.data;
       });

@@ -14,6 +14,9 @@ Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VueResource);
 
+Vue.http.options.root = config.api_url;
+Vue.http.headers.common['Content-Type'] = 'application/json';
+
 window.App = new Vue({
   router,
   store,
