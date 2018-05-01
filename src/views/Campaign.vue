@@ -10,8 +10,10 @@
         <p>Here's a campaign body. It's a very important part of any campaign.
           <strong>That's why we're calling on everyone to be a lot nicer to each other.</strong>
           Except to fascists.</p>
-        <p>See we have to smash fascism. Sometimes the fascists will
+        <blockquote>
+          <p>See we have to smash fascism. Sometimes the fascists will
           perceive this as being mean towards them, and we really can't do much about that.</p>
+        </blockquote>
         <p>But what we <em>can do</em> is sign internet petitions. That'll show 'em!</p>
 
       </div>
@@ -49,4 +51,10 @@ p {
   font-size: 1.6rem;
   font-weight: normal;
 }
+blockquote {
+  padding-left: 2rem;
+  border-left: 3px solid gray;
+
+}
+
 </style>
