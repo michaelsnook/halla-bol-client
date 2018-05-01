@@ -1,5 +1,6 @@
 <template>
   <div>
+    <b-progress class="mb-3" :value="10321" :max="15000" show-progress animated></b-progress>
     <b-form @submit="onSubmit" @reset="onReset" v-if="show">
       <b-form-group id="exampleInputGroup1"
                     label="Email address:"
