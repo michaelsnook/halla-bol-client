@@ -8,4 +8,5 @@ Setup
 -----
 
 1. npm i
+1. copy `config.js.sample` to `config.js`
 1. npm run start
