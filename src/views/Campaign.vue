@@ -8,12 +8,14 @@
         </div>
 
         <div class="campaign-description">
-          <span v-html="campaign.description"></span>
+          <span v-if="campaign.actions" v-html="campaign.actions[0].body_content"></span>
+          <span v-else v-html="campaign.description"></span>
         </div>
 
       </div>
       <div class="col-md-5 col-lg-4 my-lg-4 my-md-3">
-        <SingleForm />
+        <SingleForm v-if="campaign.actions" :action="campaign.actions[0]" />
+        <ActionNeeded v-else />
       </div>
     </div>
   </div>
@@ -21,21 +23,17 @@
 
 <script>
 import SingleForm from '@/components/SingleForm.vue';
+import ActionNeeded from '@/components/ActionNeeded.vue';
 
 export default {
   name: 'campaign',
-  components: { SingleForm },
-  data () {
-    return {
-      campaign: {
-        slug: () => $route.params.slug,
-      },
-    };
-  },
+  props: ['slug'],
+  components: { SingleForm, ActionNeeded },
+  data() { return {campaign: {}} },
   created () {
     var vm = this;
     vm.$http
-      .get(vm.$route.params.slug)
+      .get(vm.$props.slug)
       .then(function(response) {
         vm.campaign = response.data;
       });

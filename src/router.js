@@ -22,6 +22,9 @@ export default new Router({
       path: '/campaign/:slug',
       name: 'campaign',
       component: Campaign,
+      props: (route) => ({
+        slug: route.params.slug,
+      }),
     },
   ],
 });
