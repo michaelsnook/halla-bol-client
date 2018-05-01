@@ -19,7 +19,7 @@ export default new Router({
       component: About,
     },
     {
-      path: '/campaign/:id',
+      path: '/campaign/:slug',
       name: 'campaign',
       component: Campaign,
     },

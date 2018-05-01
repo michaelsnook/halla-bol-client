@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col">
         <div class="title-container mb-4">
-          <b-img :src="this.campaign.image" fluid alt="Responsive image" />
+          <b-img :src="campaign.image" fluid alt="Responsive image" />
           <h1 class="title-text">{{ campaign.name }}</h1>
         </div>
 
@@ -26,13 +26,18 @@ export default {
   name: 'campaign',
   components: { SingleForm },
   data () {
-    return { campaign: {} };
+    return {
+      campaign: {
+        slug: () => $route.params.slug,
+      },
+    };
   },
   created () {
-    this.$http
-      .get('new-speakout')
+    var vm = this;
+    vm.$http
+      .get(vm.$route.params.slug)
       .then(function(response) {
-        this.campaign = response.data;
+        vm.campaign = response.data;
       });
   }
 };
