@@ -3,18 +3,13 @@
     <div class="row">
       <div class="col">
         <div class="title-container mb-4">
-          <b-img src="https://lorempixel.com/1024/400/" fluid alt="Responsive image" />
-          <h1 class="title-text">Petition to stop fascism</h1>
+          <b-img :src="this.campaign.image" fluid alt="Responsive image" />
+          <h1 class="title-text">{{ campaign.name }}</h1>
         </div>
 
-        <p>Here's a campaign body. It's a very important part of any campaign.
-          <strong>That's why we're calling on everyone to be a lot nicer to each other.</strong>
-          Except to fascists.</p>
-        <blockquote>
-          <p>See we have to smash fascism. Sometimes the fascists will
-          perceive this as being mean towards them, and we really can't do much about that.</p>
-        </blockquote>
-        <p>But what we <em>can do</em> is sign internet petitions. That'll show 'em!</p>
+        <div class="campaign-description">
+          <span v-html="campaign.description"></span>
+        </div>
 
       </div>
       <div class="col-md-5 col-lg-4 my-lg-4 my-md-3">
@@ -30,6 +25,16 @@ import SingleForm from '@/components/SingleForm.vue';
 export default {
   name: 'campaign',
   components: { SingleForm },
+  data () {
+    return { campaign: {} };
+  },
+  created () {
+    this.$http
+      .get('https://halla-bol-api.herokuapp.com/new-speakout')
+      .then(function(response) {
+        this.campaign = response.data;
+      });
+  }
 };
 </script>
 
@@ -54,7 +59,5 @@ p {
 blockquote {
   padding-left: 2rem;
   border-left: 3px solid gray;
-
 }
-
 </style>
