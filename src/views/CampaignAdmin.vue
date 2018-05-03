@@ -18,8 +18,7 @@
           <b-modal
             id="modal1"
             :title="'Editing: ' + campaign.slug"
-            ok-title="Save updates"
-            ok-variant="success"
+            :hide-footer="true"
           >
             <CampaignEditForm :campaign="campaign" />
           </b-modal>
@@ -35,19 +34,20 @@
 
 <script>
 import CampaignEditForm from '@/components/CampaignEditForm.vue';
+import axios from 'axios';
 
 export default {
   name: 'campaign-admin',
   props: ['slug'],
   components: { CampaignEditForm },
-  data() { return {campaign: {}} },
+  data() { return {campaign: {}, initialCampaign: {}} },
   created () {
     var vm = this;
-    vm.$http
-      .get(vm.$props.slug)
+    axios.get(vm.$props.slug)
       .then(function(response) {
         vm.campaign = response.data;
-      });
+        vm.initialCampaign = response.data;
+      })
   }
 };
 </script>

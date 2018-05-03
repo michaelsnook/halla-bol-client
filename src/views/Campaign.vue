@@ -24,6 +24,7 @@
 <script>
 import SingleForm from '@/components/SingleForm.vue';
 import ActionNeeded from '@/components/ActionNeeded.vue';
+import axios from 'axios';
 
 export default {
   name: 'campaign',
@@ -32,8 +33,7 @@ export default {
   data() { return {campaign: {}} },
   created () {
     var vm = this;
-    vm.$http
-      .get(vm.$props.slug)
+    axios.get(vm.$props.slug)
       .then(function(response) {
         vm.campaign = response.data;
       });

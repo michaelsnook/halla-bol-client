@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
-import VueResource from 'vue-resource';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+
 import App from './App.vue';
 import router from './router';
 import store from './store';
@@ -12,10 +14,10 @@ import config from '@/config.js';
 Vue.config.productionTip = false;
 
 Vue.use(BootstrapVue);
-Vue.use(VueResource);
+Vue.use(VueAxios, axios);
 
-Vue.http.options.root = config.api_url;
-Vue.http.headers.common['Content-Type'] = 'application/json';
+axios.defaults.baseURL = config.api_url;
+axios.defaults.headers.common['Content-Type'] = 'application/json';
 
 window.App = new Vue({
   router,

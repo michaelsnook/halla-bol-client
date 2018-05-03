@@ -32,27 +32,35 @@
                       v-model="campaign.description">
         </b-form-textarea>
       </b-form-group>
+      <b-button type="submit" variant="danger">Submit</b-button>
+      <b-button type="reset" variant="link" class="float-md-right">Cancel
+      </b-button>
     </b-form>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
   name: 'CampaignEditForm',
-  props: ['campaign'],
-  // @TODO should track initial state and current form state
+  props: ['campaign', 'initialCampaign'],
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
+      let data = { 'campaign':
+        {
+          slug: this.campaign.slug,
+          name: this.campaign.name,
+          description: this.campaign.description,
+        }
+      }
+      axios.put(this.campaign.slug, data)
+        .then(response => { console.log(response.data) });
     },
     onReset (evt) {
       evt.preventDefault();
-      /* Reset our form values */
-      this.form.name = '';
-      this.form.image = '';
-      this.form.description = '';
+
       /* Trick to reset/clear native browser form validation state */
       this.show = false;
       this.$nextTick(() => { this.show = true });
